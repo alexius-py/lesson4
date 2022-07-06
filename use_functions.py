@@ -27,26 +27,44 @@
 При выполнении задания можно пользоваться любыми средствами
 Для реализации основного меню можно использовать пример ниже или написать свой
 """
-def balance():
-    pass
+def balance(transaction_up, balances):
+    result = balances + transaction_up
+    return result
 
+def product(transacton_down, balances):
+    name_product = input('Введите наименование товара: ')
+    dict_product[name_product] = transacton_down
+    return dict_product
 
+def history(dict_product):
+    for key, val in dict_product.items():
+        print(key, '=', val, 'руб.')
+
+balances = 0
+dict_product = {}
 while True:
     print('1. пополнение счета')
     print('2. покупка')
     print('3. история покупок')
-    print('4, Показать баланс')
+    print('4. Показать баланс')
     print('5. выход')
 
     choice = input('Выберите пункт меню')
     if choice == '1':
-        pass
+        transaction_up = int(input('Введите сумму пополнения: '))
+        balances = balance(transaction_up, balances)
+        # print(balances)
     elif choice == '2':
-        pass
+        transaction_down = int(input('Введите сумму товара: '))
+        balances = balances - transaction_down
+        if balances < 0:
+            print('Пополните счёт')
+        else:
+            dict_product = product(transaction_down, balances)
     elif choice == '3':
-        pass
+        history(dict_product)
     elif choice == '4':
-        pass
+        print('Ваш баланс', balances, 'руб.')
     elif choice == '5':
         break
     else:
